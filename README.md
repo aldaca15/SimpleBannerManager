@@ -15,12 +15,13 @@ A really simple PHP banner manager, it uses a powerful API to handle text plain 
 2. Configure db schema (script at folder "_DBschema")
 3. Change api settings to correctly set user/password (located at: api/src/settings.php)
 4. Make sure to adjust the users on the db, so you can set the proper email for your client(s)
-5. Enjoy
+5. Enjoy :+1:
 
 ## Built With
 
 * [Bootstrap 4](https://getbootstrap.com/) - The most popular HTML, CSS, and JS library in the world.
 * [PHP 5](https://php.net) - You know what I mean ;)
+* [jQuery](http://jquery.com/) - Of course it uses jQuery to work with browser's DOM
 * [PHPSlim, fluentPDO and others](http://www.slimframework.com/) - All of them with the objective to create a simple and powerful API
 * [Cloudinary](https://cloudinary.com/) - A leading cloud service to manage web and mobile media assets.
 * [Bootstrap Cloudinary upload](https://github.com/aldaca15/Bootstrap-Cloudinary-upload) - An enhancement to bundle Cloudinary uploads to Bootstrap using modals.
