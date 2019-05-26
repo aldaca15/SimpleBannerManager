@@ -1,6 +1,6 @@
 # SimpleBannerManager
 
-A really simple PHP banner manager. It was created to simplify the banner management, the main goal is to create a simple interface for a client to change banners content by just dragging images without having to worry about HTML or any other code during the process.
+A really simple PHP banner manager, it uses a powerful API to handle text plain data, and Cloudinary for image/file uploads. It was created to simplify the banner management, the main goal is to create a simple interface for a client to change banners content by just dragging images without having to worry about HTML or any other code during the process.
 
 ## Features (unmarked are under development)
 
