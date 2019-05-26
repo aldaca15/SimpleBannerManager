@@ -1,0 +1,1 @@
+{"data":[{"id":"1","matricula":"327108","verif_email":"12345","name":"Al\u00ed Adame","activo":"1","password":""}],"total":"1"}

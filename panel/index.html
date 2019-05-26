@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="A simple banner manager implementation">
+  <meta name="author" content="Ali Adame - aliadame.com">
+  <meta name="robots" content="noindex, nofollow" />
+
+  <title>Login - Simple Banner Manager - by AliAdame (GitHub@aldaca15)</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../simple-sidebar/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../simple-sidebar/css/simple-sidebar.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="d-flex toggled" id="wrapper">
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">&nbsp; <span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+	  
+	  <div class="container">
+		<div class="row">
+		  <div class="col-sm">
+		  </div>
+		  <div class="col-sm">
+			<h1 class="mt-4">Login</h1>
+			<form>
+			  <div class="form-group">
+				<label for="inputEmail">Email address</label>
+				<input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+			  </div>
+			  <div class="form-group">
+				<label for="inputPassword">Password</label>
+				<input type="password" class="form-control" id="inputPassword" placeholder="Password">
+			  </div>
+			  <button id="loginAuth" class="btn btn-primary">Submit</button>
+			</form>
+			<form action="manager/" style="visibility:hidden" id="loginSubmit" method="post">
+				<input type="hidden" id="userJWT" name="userJWT" value="">
+				<input type="submit" value="Submit" style="visibility:hidden">
+			</form>
+		  </div>
+		  <div class="col-sm">
+		  </div>
+	    </div>
+	  </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="../simple-sidebar/vendor/jquery/jquery.min.js"></script>
+  <script src="../simple-sidebar/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $(document).on("click","#loginAuth",function(event) {
+        event.preventDefault();
+        debugger;
+        $.ajax({
+            type: "POST",
+            url: "../api/public/auth/autenticar",
+            data: {
+              "email" : $("#inputEmail").val(),
+              "password" : $("#inputPassword").val()
+            },
+            beforeSend: function(request){
+            },
+            success: function(response) {
+                if(response != null && response.hasOwnProperty("response")
+                    && response.response && response.hasOwnProperty("result")) {
+                    document.getElementById("userJWT").value = response.result;
+
+                    if(document.getElementById("userJWT").value !== '') {
+                        var loginFormSubmit = document.getElementById('loginSubmit');
+                        loginFormSubmit.submit();
+                    } else {
+                        error("Error, wrong credentials", "error");
+                    }
+                } else if(response != null && response.hasOwnProperty("result")
+                   && !response.result && response.hasOwnProperty("message")) {
+					alert("Message: " + response.message);
+                } else {
+                    alert("Error, head support");
+                }
+            },
+            error: function(response) {
+                alert("Error, head support");
+            }
+        });
+        event.stopImmediatePropagation();
+    });
+  
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+</body>
+
+</html>
